@@ -1,21 +1,30 @@
 source 'https://rubygems.org'
 
+# Ruby extensions from Rails
+gem 'activesupport'
+# State machine
+gem 'aasm'
+# REST API micro-framework
 gem 'grape'
+# API presenters
+gem "grape-entity"
+# Database
 gem 'mongoid', '~> 5.0.0'
-gem 'shotgun'
+# WebServer
 gem 'puma'
-
-gem 'hashie-forbidden_attributes'
+# Debugger
+gem 'pry'
+gem 'pry-nav'
+# Rack development server reloader
+gem 'shotgun'
 
 group :test do
+  gem 'mongoid_cleaner'
   gem 'rack-test'
   gem 'rspec'
-  gem 'mongoid_cleaner'
 end
 
 group :test, :development do
   gem 'factory_girl'
   gem 'faker'
-  gem 'pry'
-  gem 'pry-nav'
 end

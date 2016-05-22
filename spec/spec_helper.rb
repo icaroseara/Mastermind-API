@@ -1,12 +1,16 @@
 ENV['RACK_ENV'] = 'test'
 
-require 'ostruct'
 require 'factory_girl'
+require 'faker'
 require 'mongoid_cleaner'
+require 'pry'
 require 'rack/test'
 
 # Load our application
 require_relative '../application.rb'
+
+# Load factories
+Dir["#{File.dirname(__FILE__)}/spec/factories/*.rb"].each { |f| require f }
 
 # Defining the app to test is required for rack-test
 OUTER_APP = Rack::Builder.parse_file('config.ru').first
@@ -15,9 +19,6 @@ OUTER_APP = Rack::Builder.parse_file('config.ru').first
 BASE_URL = 'http://example.org:80/api/v1'
 
 RSpec.configure do |config|
-  # Load the helpers file required earlier
-  config.include Helpers
-
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end

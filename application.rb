@@ -1,6 +1,4 @@
-require 'grape'
-require 'mongoid'
-require 'hashie-forbidden_attributes'
+require './config/setup.rb'
 
 Mongoid.load! "config/mongoid.config"
 
@@ -10,12 +8,15 @@ META_DATA = {
 }
 
 # Load files from the models and api folders
-Dir["#{File.dirname(__FILE__)}/app/models/**/*.rb"].each { |f| require f }
 Dir["#{File.dirname(__FILE__)}/app/api/**/*.rb"].each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/app/domains/**/*.rb"].each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/app/models/**/*.rb"].each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/app/*.rb"].each { |f| require f }
 
-# Grape API class. We inherit from it in our controllers.
 module API
   class Root < Grape::API
+    include V1::Defaults
+    
     prefix :api
 
     format :json
@@ -28,7 +29,7 @@ module API
       end
 
       def invalid_media_type!
-        error!('Unsupported media type', 415)
+        error!('unsupported_media_type', 415)
       end
 
       def json_api?
@@ -43,14 +44,13 @@ module API
     get :status do
       { status: 'ok' }
     end
+    
+    mount API::V1::Games
   end
 end
 
-# Mounting the Grape application
 Mastermind = Rack::Builder.new {
-
   map "/" do
     run API::Root
   end
-
 }
