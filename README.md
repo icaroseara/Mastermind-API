@@ -136,11 +136,14 @@ curl -H "Content-Type: application/vnd.api+json" -X GET http://127.0.0.1:9393/ap
 	}
 }
 ```
-## Running application
+## Running application locally
+```
 shotgun
-
+```
 ## Access console
+```
 RACK_ENV="development" irb -r "./application.rb"
+```
 
 # Pre-Requisites
 Before building, you will need to have installed in your machine the following tools:
@@ -150,5 +153,7 @@ Before building, you will need to have installed in your machine the following t
 - MongoDB - 3.2.x
 
 ## Testing application
+```
 bundle exec rspec
+```
 
