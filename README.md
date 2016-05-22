@@ -12,8 +12,11 @@ In this challenge I built a API to play Mastermind Game https://en.wikipedia.org
 ## API requests examples
 
 ### Availables Games:
+```
 curl -H "Content-Type: application/vnd.api+json" -X GET http://127.0.0.1:9393/api/v1/games/available
+```
 
+```json
 {
 	"games": [{
 		"id": "57422a5e7c26415c978f2b68"
@@ -23,30 +26,42 @@ curl -H "Content-Type: application/vnd.api+json" -X GET http://127.0.0.1:9393/ap
 		"id": "574228667c26415ac4086c81"
 	}]
 }
+```
 
 ### Create a new game
+```
 curl -H "Content-Type: application/vnd.api+json" -X POST http://127.0.0.1:9393/api/v1/games -d '{"player":{ "name": "Icaro Seara"}}'
+```
 
+```json
 {
 	"colors": ["R", "B", "G", "Y", "O", "P", "C", "M"],
 	"code_length": 8,
 	"game_id": "57422c287c26415db186f554",
 	"player_id": "5741b9a27c2641f95b65b335"
 }
+```
 
 ### Join a game:
+```
 curl -H "Content-Type: application/vnd.api+json" -X POST http://127.0.0.1:9393/api/v1/games/574238277c26416797461ccc/join -d '{"player":{ "name": "Icaro fahning"}}'
+```
 
+```json
 {
 	"colors": ["R", "B", "G", "Y", "O", "P", "C", "M"],
 	"code_length": 8,
 	"game_id": "574232dd7c2641637faa31fb",
 	"player_id": "574203837c264133d74b854e"
 }
+```
 
 ### Post a guess:
+```
 curl -H "Content-Type: application/vnd.api+json" -X POST http://127.0.0.1:9393/api/v1/games/574238277c26416797461ccc/guess -d '{"player": {"id": "574203837c264133d74b854e"}, "code": "RRRRRRRR"}'
+```
 
+```json
 {
 	"colors": ["R", "B", "G", "Y", "O", "P", "C", "M"],
 	"code_length": 8,
@@ -73,8 +88,9 @@ curl -H "Content-Type: application/vnd.api+json" -X POST http://127.0.0.1:9393/a
 		"player": "Icaro fahning"
 	}]
 }
+```
 
-#### 
+```json
 {
 	"colors": ["R", "B", "G", "Y", "O", "P", "C", "M"],
 	"code_length": 8,
@@ -101,11 +117,14 @@ curl -H "Content-Type: application/vnd.api+json" -X POST http://127.0.0.1:9393/a
 		"player": "Icaro fahning"
 	}]
 }
+```
 
 ### Game Status
-
+```
 curl -H "Content-Type: application/vnd.api+json" -X GET http://127.0.0.1:9393/api/v1/games/57423e717c26416bbc839eba/status
+```
 
+```json
 {
 	"game": {
 		"id": "57423e717c26416bbc839eba",
@@ -116,7 +135,7 @@ curl -H "Content-Type: application/vnd.api+json" -X GET http://127.0.0.1:9393/ap
 		"solved": false
 	}
 }
-
+```
 ## Running application
 shotgun
 
