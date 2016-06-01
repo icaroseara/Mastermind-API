@@ -1,7 +1,7 @@
 # Mastermind API
 
 ## Introduction
-In this challenge I built a API to play Mastermind Game https://en.wikipedia.org/wiki/Mastermind_(board_game) .
+In this challenge I built an API to play Mastermind Game https://en.wikipedia.org/wiki/Mastermind_(board_game) .
 
 ## Built with
 - Grape - https://github.com/ruby-grape/grape
